@@ -1,0 +1,7 @@
+<div class="container">
+  <form class="form">
+    <p>Olá, seja bem-vindo!</p>
+    <input type="text" placeholder="Digite o seu nome:" (input)="onInputChange($event)" >
+    <button type="button" (click)="onSubmit()"  [disabled]="!isButtonEnabled">Entrar</button>
+  </form>
+</div>
