@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../shared/user.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-welcome',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css'
 })
@@ -13,7 +15,7 @@ export class WelcomeComponent {
   name: string = '';
   isButtonEnabled = false;
 
-  constructor(private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   onInputChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -22,7 +24,9 @@ export class WelcomeComponent {
   }
 
   onSubmit(): void {
+    this.userService.setName(this.name);
     console.log('Submitted:', this.name);
+    console.log('GetName Service:', this.userService.getName());
     this.router.navigate(['/clients']);
   }
 
